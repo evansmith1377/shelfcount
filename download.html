@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Download Shelfcount — Windows, Linux</title>
+<meta name="description" content="Download the Shelfcount release folder for Windows or Linux. Nothing is installed, no admin rights are needed, and the whole app lives in one folder.">
+<link rel="canonical" href="https://evansmith1377.github.io/shelfcount/download.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Shelfcount">
+<meta property="og:title" content="Download Shelfcount">
+<meta property="og:description" content="Download the Shelfcount release folder for Windows or Linux. Nothing is installed and no admin rights are needed.">
+<meta property="og:url" content="https://evansmith1377.github.io/shelfcount/download.html">
+<meta property="og:image" content="https://evansmith1377.github.io/shelfcount/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Shelfcount: inventory the book room in an afternoon. Scan textbooks with a barcode scanner and walk out with a spreadsheet.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="shell">
+
+  <header class="site-header">
+    <a class="wordmark" href="./">Shelfcount</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="./">Overview</a></li>
+        <li><a href="download.html" aria-current="page">Download</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="hero stack">
+      <p class="eyebrow">Download</p>
+      <h1>One folder. No installer.</h1>
+      <p class="lede">Take the archive for your operating system, unpack it somewhere you can find again, and double-click the launcher. Nothing is written into the system and no admin rights are needed.</p>
+      <ul class="facts">
+        <li>Always the newest release</li>
+        <li>Free</li>
+        <li>No sign-up</li>
+      </ul>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section>
+      <p class="eyebrow">Pick your platform</p>
+      <h2>Two builds. Take one.</h2>
+      <ul class="tiles">
+        <li>
+          <span class="label">Windows 10 or later, 64-bit</span>
+          <h3>Windows</h3>
+          <p class="filename">Shelfcount-win-x64.zip</p>
+          <a class="btn btn-primary" href="https://github.com/evansmith1377/shelfcount/releases/latest/download/Shelfcount-win-x64.zip">Download for Windows</a>
+        </li>
+        <li>
+          <span class="label">x86-64</span>
+          <h3>Linux</h3>
+          <p class="filename">Shelfcount-linux-x64.tar.gz</p>
+          <a class="btn btn-primary" href="https://github.com/evansmith1377/shelfcount/releases/latest/download/Shelfcount-linux-x64.tar.gz">Download for Linux</a>
+        </li>
+      </ul>
+      <p class="note after-grid">Every link points at the newest published release — <a href="https://github.com/evansmith1377/shelfcount/releases">browse all releases</a> for release notes, older versions, and the <code>SHA256SUMS</code> file.</p>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section class="prose">
+      <p class="eyebrow">About macOS</p>
+      <h2>There is no Mac build at the moment.</h2>
+      <p>Shelfcount used to ship Apple Silicon and Intel builds. It doesn't any more, and we aren't planning to bring them back until Shelfcount becomes a hosted app you open in a browser — at which point a Mac needs nothing but the browser it already has.</p>
+      <p>If you are already running Shelfcount on a Mac, it keeps working. Nothing has been taken away from a folder that is already on a laptop, and its data is yours in the same one file it always was. What stops is new versions: the app's update page says macOS is discontinued and offers no download, rather than pointing you at a file that isn't there.</p>
+      <p class="note">Need a count done on a Mac in the meantime? The database file is identical across platforms, so a <code>data/shelfcount.db</code> copied to a Windows or Linux laptop opens there with every scan intact.</p>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section class="prose">
+      <p class="eyebrow">First launch</p>
+      <h2>Unpack it with <code>tar</code> and skip the warning.</h2>
+      <p>Shelfcount is deliberately not code-signed, so Windows will warn about it once — not because anything is wrong with the download, but because the operating system can't tell who built it. The warning comes from a flag your <em>browser</em> puts on the downloaded file, and <code>tar</code> doesn't copy that flag onto the files it extracts. So unpacking from a terminal avoids the warning entirely, and it's one line:</p>
+
+      <pre tabindex="0"><code># Windows — PowerShell, in the folder you want Shelfcount to live in
+tar -xf $HOME\Downloads\Shelfcount-win-x64.zip</code></pre>
+
+      <pre tabindex="0"><code># Linux — Terminal
+cd ~/Downloads
+tar -xzf Shelfcount-linux-x64.tar.gz</code></pre>
+
+      <p><code>tar</code> has shipped with Windows since Windows 10, so there is nothing to install for this.</p>
+
+      <div class="callout callout-signal">
+        <p class="eyebrow">If you unzipped it the usual way</p>
+        <h3>It's a one-time click-through, per machine.</h3>
+        <p><strong>Windows:</strong> "Windows protected your PC" → <strong>More info</strong> → <strong>Run anyway</strong>.</p>
+        <p>Or clear the flag instead of clicking through it, once per folder:</p>
+
+        <pre tabindex="0"><code># Windows — PowerShell, from inside the Shelfcount folder
+Get-ChildItem -Recurse | Unblock-File</code></pre>
+
+        <p>There is a third way that avoids all of this: if whoever manages your laptops can put the folder on the machine for you — management tools, a network share, a USB stick — nothing was downloaded by a browser, so nothing is flagged and nothing warns.</p>
+      </div>
+
+      <p>Then double-click the launcher — <code>Shelfcount.bat</code> on Windows, <code>shelfcount.sh</code> on Linux. A browser window opens at <code>http://127.0.0.1:48620</code>. That address is your own laptop: the app is running there, not on the internet.</p>
+      <p class="note">Do not run it from inside the ZIP. Windows will happily show you the contents as though it were a folder, but launching from there gives you a read-only temporary copy and the inventory will be lost when it closes. Extract it first.</p>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section>
+      <p class="eyebrow">Checking what you downloaded</p>
+      <h2>Every release publishes its checksums.</h2>
+      <p>Each release carries a <code>SHA256SUMS</code> file covering both archives. Shelfcount's own updater verifies a download against it before unpacking anything, and you can check by hand:</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Platform</th><th scope="col">Command</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Linux</td><td><code>sha256sum -c SHA256SUMS</code></td></tr>
+            <tr><td>Windows</td><td><code>Get-FileHash Shelfcount-win-x64.zip -Algorithm SHA256</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section>
+      <p class="eyebrow">Staying up to date</p>
+      <h2>It notices new versions. It never restarts on you.</h2>
+      <dl class="needs">
+        <div>
+          <dt>Notice</dt>
+          <dd>At most once a day, Shelfcount asks GitHub whether a newer release exists. A failed check is silent and never delays anything. You can turn the check off entirely.</dd>
+        </div>
+        <div>
+          <dt>Download</dt>
+          <dd>Only when you ask. The archive is verified against the release's published checksums before it is unpacked, and it lands in a staging folder that changes nothing.</dd>
+        </div>
+        <div>
+          <dt>Install</dt>
+          <dd>Only when you ask, and the swap happens at the <em>next</em> launch — never in the middle of a count. Your database is backed up first and the old version is kept, so a bad update can be undone.</dd>
+        </div>
+        <div>
+          <dt>Or don't</dt>
+          <dd>Swapping the folder by hand is still supported and always will be. Your <code>data/</code> folder is never touched by an update.</dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="./">Overview</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="https://github.com/evansmith1377/shelfcount/issues">Report a problem</a></li>
+      </ul>
+    </nav>
+    <p class="colophon">
+      <span>Shelfcount</span>
+      <span>Textbook &amp; media inventory</span>
+      <span>Windows · Linux</span>
+      <span>Built 2026-08-17</span>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

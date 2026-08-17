@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy — Shelfcount</title>
+<meta name="description" content="What Shelfcount stores, what leaves the laptop, and what it never touches. No accounts, no student data, no analytics.">
+<link rel="canonical" href="https://evansmith1377.github.io/shelfcount/privacy.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Shelfcount">
+<meta property="og:title" content="Privacy — Shelfcount">
+<meta property="og:description" content="What Shelfcount stores, what leaves the laptop, and what it never touches.">
+<meta property="og:url" content="https://evansmith1377.github.io/shelfcount/privacy.html">
+<meta property="og:image" content="https://evansmith1377.github.io/shelfcount/og-image.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Shelfcount: inventory the book room in an afternoon. Scan textbooks with a barcode scanner and walk out with a spreadsheet.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="shell">
+
+  <header class="site-header">
+    <a class="wordmark" href="./">Shelfcount</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="./">Overview</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="privacy.html" aria-current="page">Privacy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+
+    <section class="hero stack">
+      <p class="eyebrow">Privacy</p>
+      <h1>Your counts never leave the laptop.</h1>
+      <p class="lede">Shelfcount has no accounts, no servers of its own, and no analytics. What it does send out is a short list of book lookups — set out in full below, host by host, so a district can approve it without reading the source.</p>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section>
+      <p class="eyebrow">What goes out</p>
+      <h2>The complete list.</h2>
+      <ul class="tiles">
+        <li>
+          <span class="label">By itself · openlibrary.org</span>
+          <h3>The barcode number of a book being looked up</h3>
+          <p>Sent to fetch a title, author, publisher, and year. Nothing else is attached — no identifier for you, your laptop, or your school. If the laptop is never on a network this never happens, every scan is still counted, and you type the titles in yourself.</p>
+        </li>
+        <li>
+          <span class="label">By itself · covers.openlibrary.org</span>
+          <h3>A request for the cover image of a book it just looked up</h3>
+          <p>Fetched from the address Open Library returns with the record. Covers are decoration: if the request fails, the book is saved without one and nothing else changes.</p>
+        </li>
+        <li>
+          <span class="label">Only when you ask · openlibrary.org, www.googleapis.com</span>
+          <h3>A search you typed into Interactive Search</h3>
+          <p>Interactive Search is the screen you open to fix a book the automatic lookup couldn't find. It queries Open Library and the Google Books API — the latter <em>only</em> here, never during ordinary scanning — with the ISBN or the words you entered.</p>
+        </li>
+        <li>
+          <span class="label">Only when you ask · github.com and its asset hosts</span>
+          <h3>Downloading a new version</h3>
+          <p>The once-a-day update check is a single request to <code>api.github.com</code> that sends nothing about your data; <code>SHELFCOUNT_NO_UPDATE_CHECK=1</code> switches it off. If you then choose to install an update, the download comes from <code>github.com</code> and its release-asset hosts, and every redirect hop is pinned to those.</p>
+        </li>
+      </ul>
+      <p class="note after-grid">That is the entire outbound surface, and not one of those hosts is ours — Shelfcount has no server to phone. There is no telemetry, no crash reporting, no usage analytics, and no "phone home" of any other kind. You do not have to take that on trust: it is a short enough list to watch go past in a firewall log, and the section below says how.</p>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section>
+      <p class="eyebrow">What stays</p>
+      <h2>One file, on your machine.</h2>
+      <dl class="needs">
+        <div>
+          <dt>Where it lives</dt>
+          <dd>Everything Shelfcount knows is in <code>data/shelfcount.db</code>, inside the folder you unpacked. Back it up by copying it; move it to another laptop by copying it there.</dd>
+        </div>
+        <div>
+          <dt>What's in it</dt>
+          <dd>Inventory events you named, the barcodes you scanned, timestamps, and the book details that were looked up or that you typed in.</dd>
+        </div>
+        <div>
+          <dt>What isn't</dt>
+          <dd>No students, no staff, no borrowers, no circulation. Shelfcount counts copies on a shelf; it has no concept of a person, so there is no student record for it to hold.</dd>
+        </div>
+        <div>
+          <dt>Who can reach it</dt>
+          <dd>The app listens on <code>127.0.0.1</code> — the laptop's own loopback address, which nothing else on the network can connect to. It is not a server for the building.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section class="prose">
+      <p class="eyebrow">This website</p>
+      <h2>Static pages, and that's all.</h2>
+      <p>These pages are plain HTML and CSS served as static files. There are no cookies, no trackers, no analytics scripts, no embedded fonts or third-party resources, and no forms. Nothing on this site collects anything about you.</p>
+      <p>Following a download link takes you to GitHub, which is a separate service with its own privacy policy and its own logs.</p>
+    </section>
+
+    <div class="barcode" role="presentation"></div>
+
+    <section class="stack">
+      <p class="eyebrow">Verifying any of this</p>
+      <h2>Check it yourself, in four ways.</h2>
+      <p>None of the claims on this page need anyone's word for them. Every one is visible from outside the app, on the laptop in front of you — which is a better answer for a district review than a promise is.</p>
+      <dl class="needs">
+        <div>
+          <dt>Unplug the network</dt>
+          <dd>Scanning, editing, reporting, and exporting all keep working with no connection at all. An app that needed to send your data somewhere would stop; this one only stops filling in titles.</dd>
+        </div>
+        <div>
+          <dt>Open the database</dt>
+          <dd><code>data/shelfcount.db</code> is an ordinary SQLite file. Any SQLite viewer will open it and show you every row the app has ever stored — that file is the whole record, and there is no second copy of it anywhere.</dd>
+        </div>
+        <div>
+          <dt>Watch the traffic</dt>
+          <dd>Point your firewall's log at the laptop and use it for an afternoon. The only hosts that appear are the four named above, in the situations described — a scan that triggered a lookup, a search you typed, an update check.</dd>
+        </div>
+        <div>
+          <dt>Check what is listening</dt>
+          <dd><code>netstat -an</code> shows Shelfcount bound to <code>127.0.0.1:48620</code> and nothing else. Nothing else on the network can connect to it, which you can confirm by trying from another machine.</dd>
+        </div>
+      </dl>
+      <p class="note after-grid">If your district's review needs something this page does not cover, ask for it — <a href="https://github.com/evansmith1377/shelfcount/issues">open an issue</a> and say what is missing.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="./">Overview</a></li>
+        <li><a href="download.html">Download</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="https://github.com/evansmith1377/shelfcount/issues">Report a problem</a></li>
+      </ul>
+    </nav>
+    <p class="colophon">
+      <span>Shelfcount</span>
+      <span>Textbook &amp; media inventory</span>
+      <span>Windows · Linux</span>
+      <span>Built 2026-08-17</span>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
