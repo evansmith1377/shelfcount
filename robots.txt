@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://evansmith1377.github.io/shelfcount/sitemap.xml
